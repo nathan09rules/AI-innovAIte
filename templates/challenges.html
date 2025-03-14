@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AI INNOVATES</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static\style.css">
+    </head>
+
+    <body>
+        <style>
+            button:not([class]){
+                font-family: 'Poppins';
+                font-size: 20px;
+                margin: 5px;
+                width: 40px;
+                height: 40px;
+            }
+
+            button:hover:not([class]){
+                font-family: 'Poppins';
+                font-size: 20px;
+                margin: -3px;
+                width: 56px;
+                height: 56px;
+                background-color: lightblue;
+
+            }
+        </style>
+        <h1>Challenges</h1>
+        <button onclick="challenge('1')">1</button>
+        <button onclick="challenge('2')">2</button>
+        <button onclick="challenge('3')">3</button>
+        <button onclick="challenge('4')">4</button>
+        <button onclick="challenge('5')">5</button>
+
+        <h1 id="challenge">Challenge</h1>
+
+
+
+
+
+
+
+        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;" class="ex">Play / Pause Music</button>
+
+        <audio id="bg_music" autoplay loop>
+            <source src="static\sounds\zen-garden-310599.mp3" type="audio/mp3">
+            Music to my ears
+        </audio>
+        <script src="static/script.js"></script>
+    </body>
+</html>

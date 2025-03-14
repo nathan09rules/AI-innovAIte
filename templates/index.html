@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AI INNOVATES</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static\style.css">
+    </head>
+
+    <body>
+        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;">🔊 Play / Pause Music</button>
+        
+        <a href="{{ url_for('journal')}}" id="link">journal</a>
+        <a href="{{ url_for('challenge')}}" id="link">challenges</a>
+
+
+
+
+
+
+
+        <audio id="bg_music" autoplay loop>
+            <source src="static\sounds\zen-garden-310599.mp3" type="audio/mp3">
+            Music to my ears
+        </audio>
+
+        <script src="static\script.js">
+            console.log("Script is loaded!"); 
+        </script>
+        
+    </body>
+
+    <footer>
+        <h1>HELLO</h1>
+    </footer>
+</html>

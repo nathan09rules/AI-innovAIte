@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AI INNOVATES</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static\style.css">
+    </head>
+
+    <body>
+        <style>
+            input{
+                display: block;
+            }
+
+            .journal_entry{
+                width: 40vw;
+            }
+
+        </style>
+        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;">🔊 Play / Pause Music</button>
+        <h1 id="intro">Wellcome to MHW , lets start by making a small journal</h1>
+
+        <hr><br>
+        <div id="page 1">
+            <form id="journal">
+                <input id="name" type="text" placeholder="whats your name">
+                <textarea style="display:block;" rows="20" id="journal_entry" class="journal_entry" placeholder="type your journal"></textarea>
+                <br>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+
+        <div id="page 2" style="display: none;">
+            <h1>HELLO</h1>
+
+            <form id="scale">
+                
+                <label for="mood">How do you feel?</label>
+                <input type="range" id="mood" min="1" max="10" value="5" oninput="updateMoodValue(this.value)">
+
+                <br>
+                <button type="submit">submit</button>
+            </form>
+        </div>
+        
+        <div id="page 3" style="display: none;">
+            <h2 id="situation">mood</h2>
+            <h2 id="deppression">DEP</h2>
+            <br>
+            <h1>NEXT STEPS</h1>
+            <br>
+            <h2 id="next_steps">NEXT</h2>
+        </div>
+
+        <a href="{{ url_for('index')}}">index</a>
+
+        <audio id="bg_music" autoplay loop>
+            <source src="static\sounds\zen-garden-310599.mp3" type="audio/mp3">
+            Music to my ears
+        </audio>
+        <script src="static/script.js"></script>
+    </body>
+</html>

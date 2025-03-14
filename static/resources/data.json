@@ -1,0 +1,73 @@
+{
+    "challenges": {
+      "1": [
+        "Drink a glass of water.",
+        "Stretch for 5 minutes.",
+        "Write down one positive thought.",
+        "Take 3 deep breaths.",
+        "Listen to your favorite song.",
+        "Smile at yourself in the mirror.",
+        "Sit outside for 5 minutes.",
+        "Say thank you to someone.",
+        "Spend 5 minutes doodling.",
+        "Take a short break from screens."
+      ],
+      "2": [
+        "Write down three things you’re grateful for.",
+        "Go for a 15-minute walk.",
+        "Meditate for 10 minutes.",
+        "Limit social media use to 30 minutes today.",
+        "Do a random act of kindness.",
+        "Write a positive affirmation and repeat it throughout the day.",
+        "Cook a healthy meal.",
+        "Call a friend or family member for a chat.",
+        "Read a book for 20 minutes.",
+        "Organize a small space in your room."
+      ],
+      "3": [
+        "Complete a full 30-minute workout.",
+        "Go 24 hours without social media.",
+        "Wake up an hour earlier than usual.",
+        "Write a journal entry about your emotions.",
+        "Have an honest conversation about your feelings with someone you trust.",
+        "Try a new hobby or skill for an hour.",
+        "Spend a day without complaining.",
+        "Plan a full day dedicated to self-care.",
+        "Challenge yourself to say no to something that doesn’t serve you.",
+        "Reflect on your long-term goals and write down actionable steps."
+      ],
+      "4": [
+        "Do a 1-hour workout session.",
+        "Practice complete digital detox for a day.",
+        "Write a detailed letter to your future self.",
+        "Volunteer for a local charity or help someone in need.",
+        "Wake up at sunrise and enjoy a peaceful moment outside.",
+        "Spend a full day without criticizing yourself or others.",
+        "Create a detailed self-care plan and follow it.",
+        "Go on a nature hike or long walk without distractions.",
+        "Write a list of 20 things you love about yourself.",
+        "Have a meaningful conversation with someone new."
+      ],
+      "5": [
+        "Train for a fitness challenge (run 5km, do 100 push-ups, etc.).",
+        "Commit to a week-long social media detox.",
+        "Learn a new skill and practice it consistently for a month.",
+        "Organize and declutter your entire living space.",
+        "Host an event or gathering to bring people together.",
+        "Go on a solo trip to reflect and recharge.",
+        "Write and share an article or blog post about mental health.",
+        "Face one of your biggest fears in a controlled way.",
+        "Develop and stick to a strict morning and night routine for a month.",
+        "Dedicate time to mentoring or helping someone struggling."
+      ]
+    },
+    "feel":{
+      "0": "sadness",
+      "1": "joy",
+      "2": "love",
+      "3": "anger",
+      "4": "fear",
+      "5": "suprise"
+    }
+  }
+  
