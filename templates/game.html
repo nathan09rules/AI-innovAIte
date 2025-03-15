@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI INNOVATES - Memory Game</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
         }
 
         h1 {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: 28px;
         }
 
         .game-board {
             display: grid;
             grid-template-columns: repeat(4, 100px);
-            grid-gap: 10px;
+            gap: 10px;
             justify-content: center;
             margin-top: 20px;
         }
@@ -28,7 +30,7 @@
         .card {
             width: 100px;
             height: 100px;
-            background-color: #007bff;
+            background: linear-gradient(135deg, #007bff, #00d4ff);
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -36,60 +38,43 @@
             font-size: 24px;
             color: white;
             cursor: pointer;
+            transition: 0.3s;
         }
 
         .card.flipped {
-            background-color: #28a745;
+            background: #28a745;
         }
 
-        button {
-            position: fixed;
-            right: 50px;
-            bottom: 50px;
-        }
     </style>
 </head>
 
 <body>
-
     <h5 id="score">SCORE</h5>
-
     <h1>Memory Game</h1>
     <div class="game-board"></div>
 
     <h5 style="position:fixed; right: 50px; bottom: 60px;">Version 1.0</h5>
-    <button onclick="toggleMusic()">🔊 Play / Pause Music</button>
-
-    <audio id="bgMusic" autoplay loop>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+    
+    <audio id="bg_music" autoplay loop>
         <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
     </audio>
-        <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
-        <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
-        <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
-        <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
-        <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
-
+    
     <script>
-        // Memory Game
         const gameBoard = document.querySelector(".game-board");
-        const symbols = [
-  "🍎", "🍌", "🍇", "🍉", "🍊", "🍓", "🍒", "🍍",
-  "🥝", "🥥", "🍑", "🍈", "🍏", "🍋", "🍔", "🍕",
-  "🌟", "🎲", "💎", "🎰", "🎭", "🃏", "🀄", "🎵"
-];
-        symbols.sort(() => Math.random() - 0.5);
-
         let firstCard, secondCard, lockBoard = false;
 
-        function createCard(symbol) {
+        const symbols = ["🍎", "🍌", "🍇", "🍉", "🍊", "🍓", "🍒", "🍍",
+                         "🥝", "🥥", "🍑", "🍈", "🍏", "🍋", "🍔", "🍕"];
+        const shuffledSymbols = [...symbols].sort(() => Math.random() - 0.5);
+
+        shuffledSymbols.forEach(symbol => {
             const card = document.createElement("div");
             card.classList.add("card");
             card.dataset.symbol = symbol;
             card.addEventListener("click", flipCard);
             gameBoard.appendChild(card);
-        }
-
-        symbols.forEach(symbol => createCard(symbol));
+        });
 
         function flipCard() {
             if (lockBoard || this === firstCard) return;
@@ -124,22 +109,24 @@
             [firstCard, secondCard, lockBoard] = [null, null, false];
         }
 
-        // Background Music Toggle
         function toggleMusic() {
             let music = document.getElementById("bgMusic");
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
-            }
+            music.paused ? music.play() : music.pause();
         }
     </script>
-        <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
-        <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
-        <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
-        <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
-        <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
     <script src="static/script.js"></script>
+
 </body>
+<footer>
+    <hr class="endb">
+    <input type="date" id="date">
+    <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
+    <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
+    <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
+    <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
+    <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+    <button class="link"><a href="{{ url_for('breath')}}" id="link">breath</a></button>
+
+</footer>
 
 </html>

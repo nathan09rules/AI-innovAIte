@@ -24,24 +24,7 @@
                 position: relative;
             }   
 
-            .link{
-                height:30px;
-                font-weight: bold;
-                color: white;
-                background: linear-gradient(135deg, #ff416c, #ff4b2b);
-                border-radius: 5px;
-                margin: 3px;
-                transition: all 0.3s ease-in-out;
-            }
 
-            .link:hover{
-                transform: scale(1.2);
-            }
-
-            #link{
-                font-size: 15px;
-                color: white;
-            }
 
             #journal_entry{
                 width: 50vw;
@@ -57,9 +40,6 @@
                 width:50vw;
             }
 
-            footer{
-                margin-top: 100px;
-            }
         </style>
         <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
         <h1 id="intro">Wellcome to MHW , lets start by making a small journal</h1>        
@@ -112,8 +92,7 @@
             <h2 id="deppression">DEP</h2>
             <br>
             <h1>NEXT STEPS</h1>
-            <br>
-            <h2 id="next_steps">NEXT</h2>
+            <div id="next_steps"></div>
         </div>
         <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
         <audio id="bg_music" autoplay loop>
@@ -123,7 +102,7 @@
 
         <script>
             let info = {};
-
+            let journal_e = {}
             let user = {};
             
             async function load() {
@@ -131,7 +110,7 @@
                 user = await userd.json();   
 
                 const d = await fetch("static/resources/data.json");
-                info = await userd.json();   
+                info = await d.json();   
             }
 
             async function write(jsonData) {
@@ -151,7 +130,7 @@
                 let name = document.getElementById("name").value;
                 let journal = document.getElementById("journal_entry").value;
 
-                user.journal[user.date] = journal;
+                user.journal[user.date] = journal_e;
                 write(user);
 
 
@@ -177,8 +156,14 @@
                 .then(data => {
                     let feelKey = data.feel.toString();
 
-                    document.getElementById("situation").textContent = "s";//info.feel[feelKey]["emotion"];
-                    document.getElementById("next_steps").textContent = "n"//info.feel[feelKey]["tasks"];            
+                    document.getElementById("situation").textContent = info.feel[feelKey]["emotion"];
+                    let next = document.getElementById("next_steps"); 
+
+                    console.log(info.feel[feelKey]["tasks"][0]);
+                    for(x in [0,1,2,3,4]){
+                        let task = info.feel[feelKey]["tasks"][x];
+                        next.innerHTML += `<button class="task" onclick="toggle_task(this)">${task}</button>`;
+                    };
                 });
             };
 
@@ -192,6 +177,21 @@
         function updateValue(id, value) {
             document.getElementById(id).innerText = value;
         }
+
+        async function write(jsonData) {
+            await fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonData)
+            });
+        }
+
+        function toggle_task(button){
+            button.classList.toggle("completed");
+            user.score = (Number(user.score) + 10).toString();
+            write(user);
+            document.getElementById("score").textContent = `SCORE: ${user.score}`;
+        }
         </script>
 
         <script src="static/script.js"></script>
@@ -204,5 +204,7 @@
         <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
         <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
         <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+        <button class="link"><a href="{{ url_for('breath')}}" id="link">breath</a></button>
+
     </footer>
 </html>

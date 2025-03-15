@@ -27,6 +27,10 @@ CORS(app)
 def index():
     return render_template('index.html')
 
+@app.route('/moto')
+def moto():
+    return render_template('moto.html')
+
 @app.route('/journal')
 def journal():
     return render_template('journal.html')

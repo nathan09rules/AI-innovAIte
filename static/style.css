@@ -15,7 +15,7 @@
     font-size: 14px;
 }
 
-#music{
+#music:not(.b){
     position: fixed;
     bottom: 50px;
     right: 50px;
@@ -29,7 +29,7 @@
     transition: 0.3s;
 }
 
-#music:hover{
+#music:hover:not(.b){
     background: rgba(255, 255, 255, 0.5);
 }
 
@@ -39,6 +39,51 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.task {
+    display: block; /* Ensures it takes the full width of its row */
+    margin: 10px auto; /* Centers horizontally */
+    text-align: center; /* Ensures text inside is centered */
+    
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.task:active {
+    transform: scale(0.95);
+}
+.task.completed {
+    background-color: green;
+}
+
+.link{
+    height: 30px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border-radius: 5px;
+    margin: 8px;
+    transform: scale(1.2);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover{
+    transform: scale(1.5);
+}
+
+#link{
+    font-size: 15px;
+    color: white;
+}
+
 
 /*body{
     font-family: 'Poppins', sans-serif;

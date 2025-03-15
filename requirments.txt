@@ -1,0 +1,9 @@
+requrentments:
+    tensorflow
+    flask
+    numpy
+    pandas
+    flask_CORS
+    json
+    os
+
