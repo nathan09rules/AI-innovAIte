@@ -8,33 +8,45 @@
     </head>
 
     <body>
+        <h5 id="score">SCORE</h5>
+
         <style>
+
             button:not([class]){
                 font-family: 'Poppins';
+                border-radius: 10px;
                 font-size: 20px;
-                margin: 5px;
-                width: 40px;
-                height: 40px;
+                margin: 10px;
+                width: 90px;
+                height: 90px;
+                transform: translateX(30vw);
             }
 
             button:hover:not([class]){
                 font-family: 'Poppins';
-                font-size: 20px;
-                margin: -3px;
-                width: 56px;
-                height: 56px;
+                font-size: 25px;
+                margin: 0px;
+                width: 100px;
+                height: 100px;
                 background-color: lightblue;
 
             }
+
+            .mid{
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                margin: 0;
+            }
         </style>
-        <h1>Challenges</h1>
+        <h1 class="mid">Challenges</h1>
         <button onclick="challenge('1')">1</button>
         <button onclick="challenge('2')">2</button>
         <button onclick="challenge('3')">3</button>
         <button onclick="challenge('4')">4</button>
         <button onclick="challenge('5')">5</button>
 
-        <h1 id="challenge">Challenge</h1>
+        <br><br>
+        <h1 id="challenge" class="mid">Challenge</h1>
 
 
 
@@ -42,13 +54,25 @@
 
 
 
-        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
-        <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;" class="ex">Play / Pause Music</button>
+        <h5 id="bt" style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <button id="bt" onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;" class="ex">Play / Pause Music</button>
 
-        <audio id="bg_music" autoplay loop>
+        <audio id="bg_music" autoplay loop class="bt">
             <source src="static\sounds\zen-garden-310599.mp3" type="audio/mp3">
             Music to my ears
         </audio>
+        <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
+        <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
+        <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
+        <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
+        <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+
         <script src="static/script.js"></script>
     </body>
+    <footer>
+        <hr class="endb">
+        <input type="date" id="date">
+
+        <script src="static\script.js"></script>
+    </footer>
 </html>

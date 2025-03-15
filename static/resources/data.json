@@ -61,13 +61,67 @@
         "Dedicate time to mentoring or helping someone struggling."
       ]
     },
-    "feel":{
-      "0": "sadness",
-      "1": "joy",
-      "2": "love",
-      "3": "anger",
-      "4": "fear",
-      "5": "suprise"
+    "feel": {
+      "0": {
+        "emotion": "sadness",
+        "tasks": [
+          "Write down three things you are grateful for.",
+          "Listen to your favorite uplifting music.",
+          "Take a short walk outside and focus on nature.",
+          "Reach out to a friend or family member for a chat.",
+          "Do a simple breathing exercise for relaxation."
+        ]
+      },
+      "1": {
+        "emotion": "joy",
+        "tasks": [
+          "Share your happiness with someone by calling or messaging them.",
+          "Engage in a creative activity like drawing or writing.",
+          "Take a moment to fully appreciate the present.",
+          "Do something kind for someone else.",
+          "Celebrate your achievements, no matter how small."
+        ]
+      },
+      "2": {
+        "emotion": "love",
+        "tasks": [
+          "Write a heartfelt message to someone you care about.",
+          "Spend quality time with a loved one or pet.",
+          "Practice self-love by treating yourself to something nice.",
+          "Engage in a shared activity with family or friends.",
+          "Express appreciation to someone who has supported you."
+        ]
+      },
+      "3": {
+        "emotion": "anger",
+        "tasks": [
+          "Practice deep breathing to calm yourself.",
+          "Write down your thoughts in a journal before reacting.",
+          "Engage in physical activity to release tension.",
+          "Try a guided meditation for managing anger.",
+          "Identify the root cause of your anger and find solutions."
+        ]
+      },
+      "4": {
+        "emotion": "fear",
+        "tasks": [
+          "Challenge your fears by facing a small one today.",
+          "Use positive affirmations to boost your confidence.",
+          "Talk to someone you trust about your fears.",
+          "Practice grounding techniques, like focusing on your senses.",
+          "Break down your fears into manageable steps."
+        ]
+      },
+      "5": {
+        "emotion": "surprise",
+        "tasks": [
+          "Embrace the unexpected and stay open-minded.",
+          "Write about a surprising moment that brought you joy.",
+          "Share an unexpected positive experience with someone.",
+          "Try something new today, even if it’s small.",
+          "Reflect on how surprises make life more exciting."
+        ]
+      }
     }
   }
   

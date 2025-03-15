@@ -1,4 +1,4 @@
-bg_music<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -8,23 +8,29 @@ bg_music<!DOCTYPE html>
     </head>
 
     <body>
+        <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            position: relative;
+        }
+
+        h5 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        </style>
         <h5 id="score">SCORE</h5>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <h1>YOUR PAST JOURNALS</h1>
+        
+        <div id="journal"></div>
 
         <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
         <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;">🔊 Play / Pause Music</button>
@@ -43,6 +49,22 @@ bg_music<!DOCTYPE html>
         <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
         <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
         <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+        <script>
+            async function load() {
+                const userd = await fetch("static/data/user.json");
+                let user = await userd.json();
+                const journal = document.getElementById("journal");
+
+                journal.innerHTML = ""; // Clear previous content
+
+                for (const date in user.journal) {
+                    journal.innerHTML += `<h2>${date}</h2> <h3 class="jtext">${user.journal[date]}</h3><br><hr>`;
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", load);
+
+        </script>
         <script src="static\script.js"></script>
     </footer>
 </html>

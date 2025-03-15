@@ -1,88 +1,78 @@
-let name = "";
-let journal = "";
 let values = [];
+let challenges = {};
+let feel = {};
+let user = {};
 
-challenges = {}
-feel = {}
+
+score = document.getElementById("score")
+console.log(user.score);
+document.getElementById("score").textContent = user.score;
 
 async function load() {
     const res = await fetch("static/resources/data.json");
-    const data = await res.json()
-    challenges =  data.challenges;
+    const data = await res.json();
+    challenges = data.challenges;
     feel = data.feel;
+
+    const userd = await fetch("static/data/user.json");
+    user = await userd.json();
 }
 
-function Csfx() {
-    console.log("click");
-    sfx.volume = 0.1;
-    sfx.currentTime = 0; 
-    sfx.play().catch(error => console.error("SFX play failed:", error));
+async function write(jsonData) {
+    await fetch('/write', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(jsonData)
+    });
 }
 
+async function init() {
+    await load();
+
+    score.textContent = `SCORE : ${user.score}`;
+
+    if (!user.date) {  
+        let now = new Date().toISOString().split("T")[0];
+        user.date = now;
+        await write(user);
+    }
+
+    let dateInput = document.getElementById("date");
+    if (dateInput) {
+        dateInput.value = user.date;
+    }
+}
 
 const music = document.getElementById("bg_music");
 const sfx = new Audio("static/sounds/bloop-2-186531.mp3");
 
-
-load();
+function Csfx() {
+    sfx.volume = 0.1;
+    sfx.currentTime = 0; 
+    sfx.play();
+}
 
 document.addEventListener("click", Csfx);
 
-
-document.getElementById("journal").onsubmit = function(e){
-    e.preventDefault();
-
-    name = document.getElementById("name").value;
-    journal = document.getElementById("journal_entry").value;
-    
-    document.getElementById("page 1").style.display = "none";
-    document.getElementById("page 2").style.display = "block";
-    
-    fetch('http://127.0.0.1:5000/predict' , {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({input: journal})
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("deppression").textContent = data.dep;
-    }) 
-
-    fetch('http://127.0.0.1:5000/fpredict' , {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({input: journal})
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("situation").textContent = feel[data.feel.toString()] || "Unknown Feeling";
-    }) 
-    // continue this
-}
-
-document.getElementById("scale").onsubmit = function(e){
-    e.preventDefault();
-
-    document.getElementById("page 2").style.display = "none";
-    document.getElementById("page 3").style.display = "block";
-    
-    // continue this
-}
+document.addEventListener("DOMContentLoaded", () => {
+    let dateInput = document.getElementById("date");
+    dateInput.addEventListener("change", async () => {
+        user.date = dateInput.value;
+        await write(user);
+    });
+    });
 
 function toggleMusic() {
-    music.volume = 0.5;
     if (music.paused) {
-        console.log("Playing music...");
-        music.play().catch(error => console.error("Music play failed:", error));
+        music.play();
     } else {
-        console.log("Pausing music...");
         music.pause();
     }
 }
 
 async function challenge(level) {
-    data = challenges[level];
     const RNG = Math.floor(Math.random() * 9) + 1;
-    document.getElementById("challenge").textContent = data[RNG];
+    document.getElementById("challenge").textContent = challenges[level][RNG];
 }
 
+init();
