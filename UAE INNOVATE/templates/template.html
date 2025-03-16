@@ -1,0 +1,48 @@
+bg_music<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AI INNOVATES</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static\style.css">
+    </head>
+
+    <body>
+        <h5 id="score">SCORE</h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <button onclick="toggleMusic()" style="position:fixed ; right: 50px; bottom: 50px;">🔊 Play / Pause Music</button>
+
+        <audio id="" autoplay loop>
+            <source src="static\sounds\zen-garden-310599.mp3" type="audio/mp3">
+            Music to my ears
+        </audio>
+        <script src="static/script.js"></script>
+    </body>
+    <footer>
+        <hr class="endb">
+        <input type="date" id="date">
+        <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
+        <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
+        <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
+        <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
+        <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+        <script src="static\script.js"></script>
+    </footer>
+</html>

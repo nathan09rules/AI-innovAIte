@@ -1,0 +1,127 @@
+{
+    "challenges": {
+      "1": [
+        "Drink a glass of water.",
+        "Stretch for 5 minutes.",
+        "Write down one positive thought.",
+        "Take 3 deep breaths.",
+        "Listen to your favorite song.",
+        "Smile at yourself in the mirror.",
+        "Sit outside for 5 minutes.",
+        "Say thank you to someone.",
+        "Spend 5 minutes doodling.",
+        "Take a short break from screens."
+      ],
+      "2": [
+        "Write down three things you’re grateful for.",
+        "Go for a 15-minute walk.",
+        "Meditate for 10 minutes.",
+        "Limit social media use to 30 minutes today.",
+        "Do a random act of kindness.",
+        "Write a positive affirmation and repeat it throughout the day.",
+        "Cook a healthy meal.",
+        "Call a friend or family member for a chat.",
+        "Read a book for 20 minutes.",
+        "Organize a small space in your room."
+      ],
+      "3": [
+        "Complete a full 30-minute workout.",
+        "Go 24 hours without social media.",
+        "Wake up an hour earlier than usual.",
+        "Write a journal entry about your emotions.",
+        "Have an honest conversation about your feelings with someone you trust.",
+        "Try a new hobby or skill for an hour.",
+        "Spend a day without complaining.",
+        "Plan a full day dedicated to self-care.",
+        "Challenge yourself to say no to something that doesn’t serve you.",
+        "Reflect on your long-term goals and write down actionable steps."
+      ],
+      "4": [
+        "Do a 1-hour workout session.",
+        "Practice complete digital detox for a day.",
+        "Write a detailed letter to your future self.",
+        "Volunteer for a local charity or help someone in need.",
+        "Wake up at sunrise and enjoy a peaceful moment outside.",
+        "Spend a full day without criticizing yourself or others.",
+        "Create a detailed self-care plan and follow it.",
+        "Go on a nature hike or long walk without distractions.",
+        "Write a list of 20 things you love about yourself.",
+        "Have a meaningful conversation with someone new."
+      ],
+      "5": [
+        "Train for a fitness challenge (run 5km, do 100 push-ups, etc.).",
+        "Commit to a week-long social media detox.",
+        "Learn a new skill and practice it consistently for a month.",
+        "Organize and declutter your entire living space.",
+        "Host an event or gathering to bring people together.",
+        "Go on a solo trip to reflect and recharge.",
+        "Write and share an article or blog post about mental health.",
+        "Face one of your biggest fears in a controlled way.",
+        "Develop and stick to a strict morning and night routine for a month.",
+        "Dedicate time to mentoring or helping someone struggling."
+      ]
+    },
+    "feel": {
+      "0": {
+        "emotion": "sadness",
+        "tasks": [
+          "Write down three things you are grateful for.",
+          "Listen to your favorite uplifting music.",
+          "Take a short walk outside and focus on nature.",
+          "Reach out to a friend or family member for a chat.",
+          "Do a simple breathing exercise for relaxation."
+        ]
+      },
+      "1": {
+        "emotion": "joy",
+        "tasks": [
+          "Share your happiness with someone by calling or messaging them.",
+          "Engage in a creative activity like drawing or writing.",
+          "Take a moment to fully appreciate the present.",
+          "Do something kind for someone else.",
+          "Celebrate your achievements, no matter how small."
+        ]
+      },
+      "2": {
+        "emotion": "love",
+        "tasks": [
+          "Write a heartfelt message to someone you care about.",
+          "Spend quality time with a loved one or pet.",
+          "Practice self-love by treating yourself to something nice.",
+          "Engage in a shared activity with family or friends.",
+          "Express appreciation to someone who has supported you."
+        ]
+      },
+      "3": {
+        "emotion": "anger",
+        "tasks": [
+          "Practice deep breathing to calm yourself.",
+          "Write down your thoughts in a journal before reacting.",
+          "Engage in physical activity to release tension.",
+          "Try a guided meditation for managing anger.",
+          "Identify the root cause of your anger and find solutions."
+        ]
+      },
+      "4": {
+        "emotion": "fear",
+        "tasks": [
+          "Challenge your fears by facing a small one today.",
+          "Use positive affirmations to boost your confidence.",
+          "Talk to someone you trust about your fears.",
+          "Practice grounding techniques, like focusing on your senses.",
+          "Break down your fears into manageable steps."
+        ]
+      },
+      "5": {
+        "emotion": "surprise",
+        "tasks": [
+          "Embrace the unexpected and stay open-minded.",
+          "Write about a surprising moment that brought you joy.",
+          "Share an unexpected positive experience with someone.",
+          "Try something new today, even if it’s small.",
+          "Reflect on how surprises make life more exciting."
+        ]
+      }
+    }
+  }
+  

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI INNOVATES - Memory Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 28px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #007bff, #00d4ff);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card.flipped {
+            background: #28a745;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h5 id="score">SCORE</h5>
+    <h1>Memory Game</h1>
+    <div class="game-board"></div>
+
+    <h5 class="version">Version 1.0</h5>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+    <audio id="bg_music" autoplay loop>
+        <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
+    </audio>
+    
+    <script>
+        const gameBoard = document.querySelector(".game-board");
+        let firstCard, secondCard, lockBoard = false;
+
+        const symbols = ["🍎", "🍌", "🍇", "🍉", "🍊", "🍓", "🍒", "🍍",
+                         "🥝", "🥥", "🍑", "🍈", "🍏", "🍋", "🍔", "🍕"];
+        const shuffledSymbols = [...symbols].sort(() => Math.random() - 0.5);
+
+        shuffledSymbols.forEach(symbol => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.dataset.symbol = symbol;
+            card.addEventListener("click", flipCard);
+            gameBoard.appendChild(card);
+        });
+
+        function flipCard() {
+            if (lockBoard || this === firstCard) return;
+            
+            this.innerText = this.dataset.symbol;
+            this.classList.add("flipped");
+
+            if (!firstCard) {
+                firstCard = this;
+            } else {
+                secondCard = this;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            lockBoard = true;
+            if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+                resetCards();
+            } else {
+                setTimeout(() => {
+                    firstCard.innerText = "";
+                    secondCard.innerText = "";
+                    firstCard.classList.remove("flipped");
+                    secondCard.classList.remove("flipped");
+                    resetCards();
+                }, 1000);
+            }
+        }
+
+        function resetCards() {
+            [firstCard, secondCard, lockBoard] = [null, null, false];
+        }
+
+        function toggleMusic() {
+            let music = document.getElementById("bgMusic");
+            music.paused ? music.play() : music.pause();
+        }
+    </script>
+    <script src="static/script.js"></script>
+
+</body>
+<footer>
+    <hr class="endb">
+    <input type="date" id="date">
+    <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
+    <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
+    <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
+    <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
+    <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+    <button class="link"><a href="{{ url_for('breath')}}" id="link">breath</a></button>
+
+</footer>
+
+</html>

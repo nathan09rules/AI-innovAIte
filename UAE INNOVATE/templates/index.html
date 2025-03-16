@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI INNOVATES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static\style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        h5 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .template {
+            width: 250px;
+            height: 70px;
+            margin: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(255, 75, 43, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .template:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(255, 75, 43, 0.7);
+        }
+
+        .template a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            width: 100%;
+            height: 100%;
+            line-height: 70px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h5 id="score">SCORE: 0</h5>
+
+    <button class="template"><a href="{{ url_for('journal') }}">📖 Journal</a></button>
+    <button class="template"><a href="{{ url_for('challenge') }}">🔥 Challenges</a></button>
+    <button class="template"><a href="{{ url_for('view') }}">👀 View</a></button>
+    <button class="template"><a href="{{ url_for('game') }}">🎮 Game</a></button>
+    <button class="template"><a href="{{ url_for('moto') }}">🏠 moto</a></button>
+    <button class="template"><a href="{{ url_for('breath') }}">💨 Breathe</a></button>
+
+    <h5 class="version">Version 1.0</h5>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+    <audio id="bg_music" autoplay loop>
+        <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function toggleMusic() {
+            let music = document.getElementById("bg_music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+    <script src="static/script.js"></script>
+
+
+    </body>
+    <footer>
+        <hr class="endb">
+        <input type="date" id="date">
+    </footer>
+</html>

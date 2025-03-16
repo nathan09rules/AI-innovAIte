@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Vision & Mission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2 {
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #28a745;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+        .link:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Vision</h1>
+        <p>To create a world where mental health and well-being are prioritized through innovative, interactive, and engaging solutions.</p>
+        
+        <h2>Our Mission</h2>
+        <p>We aim to provide a gamified approach to mental wellness, integrating technology, psychology, and engagement strategies to make mental health support accessible and enjoyable for everyone.</p>
+        
+        <h2>Our Goal</h2>
+        <p>To develop a platform that offers personalized exercises, tracking mechanisms, and community-driven support, helping individuals build resilience and a healthier mindset.</p>
+    </div>
+    
+    <h2>What is Gamified Mental Welfare?</h2>
+    <p>Gamified Mental Welfare leverages game design elements like challenges, rewards, and streaks to make mental wellness practices more engaging. By incorporating AI-driven insights, we help users track progress, build positive habits, and stay motivated in their journey towards better mental health.</p>
+    
+    <a href="{{ url_for('index') }}" class="link">Home</a>
+    <a href="{{ url_for('challenge') }}" class="link">Challenges</a>
+    <a href="{{ url_for('journal') }}" class="link">Journal</a>
+
+    
+    <h5 class="version">Version 1.0</h5>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+    <audio id="bg_music" autoplay loop>
+        <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
+    </audio>
+    <script src="static/script.js"></script>
+</body>
+<footer>
+    <hr class="endb">
+    <input type="date" id="date">
+    <script src="static\script.js"></script>
+</footer>
+</html>

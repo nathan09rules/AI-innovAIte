@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI INNOVATES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h5 {
+            margin: 20px 0;
+        }
+        
+        #journal {
+            margin: 20px auto;
+            max-width: 80%;
+            text-align: left;
+        }
+
+        .journal-entry {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ff416c;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer-buttons {
+            margin-top: 10px;
+        }
+
+        .footer-buttons button {
+            display: inline-block;
+        }
+
+        hr {
+            width: 80%;
+            border: 1px solid white;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h5 id="score">SCORE</h5>
+    <h1>YOUR PAST JOURNALS</h1>
+    
+    <div id="journal"></div>
+
+    <h5 class="version">Version 1.0</h5>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+    <audio id="bg_music" autoplay loop>
+        <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="static/script.js"></script>
+</body>
+
+<footer>
+    <hr>
+    <input type="date" id="date">
+
+    <div class="footer-buttons">
+        <button class="link"><a href="{{ url_for('journal')}}" id="link">Journal</a></button>
+        <button class="link"><a href="{{ url_for('challenge')}}" id="link">Challenges</a></button>
+        <button class="link"><a href="{{ url_for('view')}}" id="link">View</a></button>
+        <button class="link"><a href="{{ url_for('game')}}" id="link">Game</a></button>
+        <button class="link"><a href="{{ url_for('index')}}" id="link">Index</a></button>
+    </div>
+
+    <script>
+        async function load() {
+            try {
+                const userd = await fetch("static/data/user.json");
+                let user = await userd.json();
+                const journal = document.getElementById("journal");
+
+                journal.innerHTML = ""; // Clear previous content
+
+                for (const date in user.journal) {
+                    journal.innerHTML += `
+                        <div class="journal-entry">
+                            <h2>${date}</h2>
+                            <h3>${user.journal[date]}</h3>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error("Error loading journal data:", error);
+                document.getElementById("journal").innerHTML = "<p>Failed to load journal data.</p>";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", load);
+    </script>
+    <script src="static/script.js"></script>
+</footer>
+
+</html>

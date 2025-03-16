@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AI INNOVATES</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+
+    <body>
+
+        <h5 id="score">SCORE</h5>
+
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #1e3c72, #2a5298);
+                font-family: 'Poppins' , sans-serif;
+                text-align: center;
+                color: white;
+                position: relative;
+            }   
+
+
+
+            #journal_entry{
+                width: 50vw;
+                margin: 10px;
+            }
+
+            span input h4{
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+
+            input[type="range"]{
+                width:50vw;
+            }
+
+        </style>
+        <h5 style="position:fixed ; right: 50px; bottom: 60px;">Version 1.0</h5>
+        <h1 id="intro">Wellcome to MHW , lets start by making a small journal</h1>        
+        <div id="page 1">
+            <form id="journal">
+                <input id="name" type="text" placeholder="whats your name">
+                <textarea style="display:block;" rows="20" id="journal_entry" class="journal_entry" placeholder="type your journal"></textarea>
+                <br>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+
+        <div id="page 2" style="display: none;">
+            <h4><h1>HOW ARE YOU</h1></h4>
+
+            <form id="scale">
+                
+                <h4 for="mood">How do you feel?</h4>
+                <input type="range" id="mood" min="1" max="10" value="5" oninput="updateValue('moodValue', this.value)">
+                <span id="moodValue">5</span>
+
+                <h4 for="energy">How is your energy today?</h4>
+                <input type="range" id="energy" min="1" max="10" value="5" oninput="updateValue('energyValue', this.value)">
+                <span id="energyValue">5</span>
+
+                <h4 for="stress">How stressed are you?</h4>
+                <input type="range" id="stress" min="1" max="10" value="5" oninput="updateValue('stressValue', this.value)">
+                <span id="stressValue">5</span>
+
+                <h4 for="sleep">How well did you sleep last night?</h4>
+                <input type="range" id="sleep" min="1" max="10" value="5" oninput="updateValue('sleepValue', this.value)">
+                <span id="sleepValue">5</span>
+
+                <h4 for="social">How connected do you feel to others?</h4>
+                <input type="range" id="social" min="1" max="10" value="5" oninput="updateValue('socialValue', this.value)">
+                <span id="socialValue">5</span>
+
+                <h4 for="motivation">How motivated do you feel today?</h4>
+                <input type="range" id="motivation" min="1" max="10" value="5" oninput="updateValue('motivationValue', this.value)">
+                <span id="motivationValue">5</span>
+
+
+                <br>
+                <button type="submit">submit</button>
+            </form>
+        </div>
+        
+        <div id="page 3" style="display: none;">
+            <h2 id="situation">mood</h2>
+            <h2 id="deppression">DEP</h2>
+            <br>
+            <h1>NEXT STEPS</h1>
+            <div id="next_steps"></div>
+        </div>
+        
+        <h5 class="version">Version 1.0</h5>
+        <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+    
+        <audio id="bg_music" autoplay loop>
+            <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
+        </audio>
+
+        <script>
+            let info = {};
+            let journal_e;
+            let user = {};
+            
+            async function load() {
+                const userd = await fetch("static/data/user.json");
+                user = await userd.json();   
+
+                const d = await fetch("static/resources/data.json");
+                info = await d.json();   
+            }
+
+            async function write(jsonData) {
+                await fetch('/write', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                });
+            }
+
+            load();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("journal").onsubmit = function (e) {
+                e.preventDefault();
+
+                let name = document.getElementById("name").value;
+                journal_e = document.getElementById("journal_entry").value;
+
+                user.journal[user.date] = journal_e;
+                write(user);
+
+
+                document.getElementById("page 1").style.display = "none";
+                document.getElementById("page 2").style.display = "block";
+
+                fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ input: journal })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("deppression").textContent = data.dep;
+                });
+
+                fetch('http://127.0.0.1:5000/fpredict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ input: journal_e })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let feelKey = data.feel.toString();
+
+                    document.getElementById("situation").textContent = info.feel[feelKey]["emotion"];
+                    let next = document.getElementById("next_steps"); 
+
+                    console.log(info.feel[feelKey]["tasks"][0]);
+                    for(x in [0,1,2,3,4]){
+                        let task = info.feel[feelKey]["tasks"][x];
+                        next.innerHTML += `<button class="task" onclick="toggle_task(this)">${task}</button>`;
+                    };
+                });
+            };
+
+            document.getElementById("scale").onsubmit = function (e) {
+                e.preventDefault();
+                document.getElementById("page 2").style.display = "none";
+                document.getElementById("page 3").style.display = "block";
+            };
+        });
+
+        function updateValue(id, value) {
+            document.getElementById(id).innerText = value;
+        }
+
+        async function write(jsonData) {
+            await fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonData)
+            });
+        }
+
+        function toggle_task(button){
+            button.classList.toggle("completed");
+            user.score = (Number(user.score) + 10).toString();
+            write(user);
+            document.getElementById("score").textContent = `SCORE: ${user.score}`;
+        }
+        </script>
+
+        <script src="static/script.js"></script>
+    </body>
+    <footer>
+        <hr class="endb">
+        <input type="date" id="date">
+        <button class="link"><a href="{{ url_for('journal')}}" id="link">journal</a></button>
+        <button class="link"><a href="{{ url_for('challenge')}}" id="link">challenges</a></button>
+        <button class="link"><a href="{{ url_for('view')}}" id="link">view</a></button>
+        <button class="link"><a href="{{ url_for('game')}}" id="link">game</a></button>
+        <button class="link"><a href="{{ url_for('index')}}" id="link">index</a></button>
+        <button class="link"><a href="{{ url_for('breath')}}" id="link">breath</a></button>
+
+    </footer>
+</html>
