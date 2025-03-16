@@ -61,12 +61,11 @@
     
     <div id="journal"></div>
 
-    <h5 style="position: fixed; right: 50px; bottom: 60px;">Version 1.0</h5>
-    <button onclick="toggleMusic()" style="position: fixed; right: 50px; bottom: 50px;">🔊 Play / Pause Music</button>
+    <h5 class="version">Version 1.0</h5>
+    <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
 
     <audio id="bg_music" autoplay loop>
         <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
-        Music to my ears
     </audio>
 
     <script src="static/script.js"></script>

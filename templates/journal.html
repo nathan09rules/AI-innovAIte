@@ -94,15 +94,17 @@
             <h1>NEXT STEPS</h1>
             <div id="next_steps"></div>
         </div>
+        
+        <h5 class="version">Version 1.0</h5>
         <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+    
         <audio id="bg_music" autoplay loop>
             <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
-            Music to my ears
         </audio>
 
         <script>
             let info = {};
-            let journal_e = {}
+            let journal_e;
             let user = {};
             
             async function load() {
@@ -123,12 +125,12 @@
 
             load();
 
-            document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("journal").onsubmit = function (e) {
                 e.preventDefault();
 
                 let name = document.getElementById("name").value;
-                let journal = document.getElementById("journal_entry").value;
+                journal_e = document.getElementById("journal_entry").value;
 
                 user.journal[user.date] = journal_e;
                 write(user);
@@ -150,7 +152,7 @@
                 fetch('http://127.0.0.1:5000/fpredict', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ input: journal })
+                    body: JSON.stringify({ input: journal_e })
                 })
                 .then(response => response.json())
                 .then(data => {

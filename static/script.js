@@ -1,16 +1,15 @@
-let challenge_data = {};
+let data_challenges = {};
 let feel = {};
 let user_data = {};
 
 
 score = document.getElementById("score")
-console.log(user_data.score);
-document.getElementById("score").textContent = user_data.score;
+document.getElementById("score").textContent = `SCORE: ${user_data.score}`;
 
 async function load() {
     const res = await fetch("static/resources/data.json");
     const data = await res.json();
-    challenge_data = data.challenges;
+    data_challenges = data.challenges;
     feel = data.feel;
 
     const userd = await fetch("static/data/user.json");
@@ -28,7 +27,6 @@ async function write(jsonData) {
 async function init() {
     await load();
 
-    console.log("HELLO")
     score.textContent = `SCORE : ${user_data.score}`;
 
     if (!user_data.date) {  
@@ -63,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 function toggleMusic() {
+    const music = document.getElementById("bg_music");
     console.log(music.paused)
     if (music.paused) {
         music.play();
@@ -75,8 +74,8 @@ async function challenge(level) {
     const RNG = Math.floor(Math.random() * 9) + 1; // Fix Math.Floor -> Math.floor
     level = level.toString();
     // Ensure challenge_data exists and has the required properties
-    if (challenge_data[level] && challenge_data[level][RNG]) {
-        document.getElementById("challenge").textContent = challenge_data[level][RNG];
+    if (data_challenges[level] && data_challenges[level][RNG]) {
+        document.getElementById("challenge").textContent = data_challenges[level][RNG];
     } else {
         console.error("Invalid challenge data for level:", level, "RNG:", RNG);
         document.getElementById("challenge").textContent = "Challenge not found!";

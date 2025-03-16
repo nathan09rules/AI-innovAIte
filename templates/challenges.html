@@ -103,13 +103,13 @@
 
         <button onclick="toggle_task(this)" class="task"><h1 id="challenge" onclick="">Challenge</h1></button>
 
-        <h5 id="bt" style="position:fixed; right: 50px; bottom: 60px;">Version 1.0</h5>
-        <button id="music" onclick="toggleMusic()" style="position:fixed; right: 50px; bottom: 50px;" class="ex">Play / Pause Music</button>
-
-        <audio id="bg_music" autoplay loop class="bt">
+        <h5 class="version">Version 1.0</h5>
+        <button id="music" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+    
+        <audio id="bg_music" autoplay loop>
             <source src="static/sounds/zen-garden-310599.mp3" type="audio/mp3">
-            Music to my ears
         </audio>
+
         <script>
             let info = {};
             let journal_e = {}
